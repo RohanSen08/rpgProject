@@ -1,5 +1,6 @@
 public class Sorcerer extends Adventurer{
   private int mana = 10;
+  private int manaMax = 100;
   public Sorcerer(String name){
       super(name, 10);
   }
@@ -19,21 +20,42 @@ public class Sorcerer extends Adventurer{
   public void setSpecial(int n){
     mana = n;
   }
-  public abstract int getSpecialMax();
+  public int getSpecialMax(){
+    return manaMax;
+  }
 
   /*
     all adventurers must have a way to attack enemies and
     support their allys
   */
   //hurt or hinder the target adventurer
-  public abstract String attack(Adventurer other);
+  public String attack(Adventurer other){
+    other.setSpecial(other.applyDamage(15));
+  }
 
   //heall or buff the target adventurer
-  public abstract String support(Adventurer other);
+  public String support(Adventurer other){
+    other.setHP(Math.min(super.getHP()+15, other.getmaxHP()));
+    other.setSpecial(Math.min(super.getSpecial()+15, other.getSpecialMax()));
+  }
 
   //heall or buff self
-  public abstract String support();
+  public String support(){
+    if (mana >= 10){
+      super.setHP(Math.min(super.getHP()+15, super.getmaxHP()));
+      mana -= 10;
+    } else {
+      System.out.println("NOT ENOUGH MANA");
+    }
+  }
 
   //hurt or hinder the target adventurer, consume some special resource
-  public abstract String specialAttack(Adventurer other);
+  public String specialAttack(Adventurer other){
+    if (mana > 25){
+      other.setSpecial(other.applyDamage(50));
+      mana -= 25;
+    } else {
+      System.out.println("NOT ENOUGH MANA");
+    }
+  }
 }
