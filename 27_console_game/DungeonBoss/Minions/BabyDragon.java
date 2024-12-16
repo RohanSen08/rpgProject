@@ -1,8 +1,6 @@
-public class BabyDragon{
+public class BabyDragon extends Minion{
 
   public BabyDragon(){
-    cost = 1000;
-    damage = 15;
-    range = 5;
+    super(1000,15,5);
   }
 }

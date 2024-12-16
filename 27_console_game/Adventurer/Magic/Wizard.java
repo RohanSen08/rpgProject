@@ -1,17 +1,19 @@
 public class Wizard extends Adventurer{
-  private int mana = 10;
-  private int manaMax = 100;
-  public Sorcerer(String name){
+  private int mana = 50;
+  private int manaMax = 500;
+  public Wizard(String name){
       super(name, 10);
   }
 
-  public Sorcerer(String name, int hp){
+  public Wizard(String name, int hp){
       super(name, hp);
   }
-
+  public Wizard(Sorcerer sorcerer){
+    super(sorcerer.getName(), sorcerer.getHP());
+  }
   //give it a short name (fewer than 13 characters)
   public String getSpecialName(){
-    return "Staff of Doom";
+    return "Skibidi Staff";
   }
   //accessor methods
   public int getSpecial(){
@@ -30,19 +32,19 @@ public class Wizard extends Adventurer{
   */
   //hurt or hinder the target adventurer
   public String attack(Adventurer other){
-    other.setSpecial(other.applyDamage(15));
+    other.setSpecial(other.applyDamage(30));
   }
 
   //heall or buff the target adventurer
   public String support(Adventurer other){
-    other.setHP(Math.min(super.getHP()+15, other.getmaxHP()));
-    other.setSpecial(Math.min(super.getSpecial()+15, other.getSpecialMax()));
+    other.setHP(Math.min(super.getHP()+30, other.getmaxHP()));
+    other.setSpecial(Math.min(super.getSpecial()+30, other.getSpecialMax()));
   }
 
   //heall or buff self
   public String support(){
     if (mana >= 10){
-      super.setHP(Math.min(super.getHP()+15, super.getmaxHP()));
+      super.setHP(Math.min(super.getHP()+30, super.getmaxHP()));
       mana -= 10;
     } else {
       System.out.println("NOT ENOUGH MANA");
@@ -52,7 +54,8 @@ public class Wizard extends Adventurer{
   //hurt or hinder the target adventurer, consume some special resource
   public String specialAttack(Adventurer other){
     if (mana > 25){
-      other.setSpecial(other.applyDamage(50));
+      other.setSpecial(other.applyDamage(75));
+      super.setHP(Math.min(super.getHP()+10, super.getmaxHP()));
       mana -= 25;
     } else {
       System.out.println("NOT ENOUGH MANA");

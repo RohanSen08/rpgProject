@@ -1,9 +1,7 @@
-public class Beartrap{
+public class Beartrap extends Minon{
 
   public Beartrap(){
-    cost = 100;
-    damage = 8;
-    range = 0;
+    super(100,8,0);
     inflictBleed(2);
   }
 

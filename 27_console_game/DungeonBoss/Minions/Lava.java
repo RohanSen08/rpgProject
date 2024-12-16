@@ -1,8 +1,6 @@
-public class Lava{
+public class Lava extends Minion{
 
   public Lava(){
-    cost = 100;
-    damage = 15;
-    range = 0;
+    super(100,15,0);
   }
 }

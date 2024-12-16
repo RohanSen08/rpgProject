@@ -4,8 +4,8 @@ public class Minion{
   private int range;
 
   public Minion(){
-    cost = 100;
-    damage = 10;
-    range = 10;
+    this.cost = 100;
+    this.damage = 10;
+    this.range = 10;
   }
 }

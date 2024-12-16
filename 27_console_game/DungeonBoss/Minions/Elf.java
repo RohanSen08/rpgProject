@@ -1,8 +1,6 @@
-public class Elf{
+public class Elf extends Minion{
 
   public Elf(){
-    cost = 500;
-    damage = 10;
-    range = 5;
+    super(500,10,5);
   }
 }

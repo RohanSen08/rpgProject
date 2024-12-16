@@ -1,8 +1,6 @@
-public class Goblin{
+public class Goblin extends Minion{
 
   public Goblin(){
-    cost = 300;
-    damage = 8;
-    range = 2;
+    super(300,8,2);
   }
 }

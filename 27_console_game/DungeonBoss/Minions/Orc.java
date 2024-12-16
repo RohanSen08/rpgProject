@@ -1,8 +1,6 @@
-public class Orc{
+public class Orc extends Minion{
 
   public Orc(){
-    cost = 200;
-    damage = 15;
-    range = 2;
+    super(200,15,2);
   }
 }

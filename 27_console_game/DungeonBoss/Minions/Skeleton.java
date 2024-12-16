@@ -1,8 +1,6 @@
-public class Skeleton{
+public class Skeleton extends Minion{
 
   public Skeleton(){
-    cost = 100;
-    damage = 8;
-    range = 1;
+    super(100,8,1);
   }
 }
