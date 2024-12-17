@@ -47,16 +47,16 @@ public abstract class Adventurer{
     support their allys
   */
   //hurt or hinder the target adventurer
-  public abstract String attack(Adventurer other);
+  public abstract void attack(Adventurer other);
 
   //heall or buff the target adventurer
-  public abstract String support(Adventurer other);
+  public abstract void support(Adventurer other);
 
   //heall or buff self
-  public abstract String support();
+  public abstract void support();
 
   //hurt or hinder the target adventurer, consume some special resource
-  public abstract String specialAttack(Adventurer other);
+  public abstract void specialAttack(Adventurer other);
 
   /*
     standard methods

@@ -31,18 +31,18 @@ public class Wizard extends Adventurer{
     support their allys
   */
   //hurt or hinder the target adventurer
-  public String attack(Adventurer other){
-    other.setSpecial(other.applyDamage(30));
+  public void attack(Adventurer other){
+    other.applyDamage(30);
   }
 
   //heall or buff the target adventurer
-  public String support(Adventurer other){
+  public void support(Adventurer other){
     other.setHP(Math.min(super.getHP()+30, other.getmaxHP()));
-    other.setSpecial(Math.min(super.getSpecial()+30, other.getSpecialMax()));
+    other.setSpecial(Math.min(getSpecial()+30, other.getSpecialMax()));
   }
 
   //heall or buff self
-  public String support(){
+  public void support(){
     if (mana >= 10){
       super.setHP(Math.min(super.getHP()+30, super.getmaxHP()));
       mana -= 10;
@@ -52,9 +52,9 @@ public class Wizard extends Adventurer{
   }
 
   //hurt or hinder the target adventurer, consume some special resource
-  public String specialAttack(Adventurer other){
+  public void specialAttack(Adventurer other){
     if (mana > 25){
-      other.setSpecial(other.applyDamage(75));
+      other.applyDamage(75);
       super.setHP(Math.min(super.getHP()+10, super.getmaxHP()));
       mana -= 25;
     } else {
