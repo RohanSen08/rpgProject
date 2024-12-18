@@ -96,10 +96,11 @@ public class Game{
     Scanner playerInput = new Scanner(System.in);
     System.out.println("Wizard (0) or Soldier (1)?");
     Adventurer player = new Minion(1);
-      if (playerInput.nextLine().equals("0")) {
+    String input = playerInput.nextLine();
+      if (input.equals("0")) {
         System.out.println("Welcome Wizard. ENTER A NAME:");
         player = new Sorcerer(playerInput.nextLine());
-      } else if (playerInput.nextLine().equals("1")) {
+      } else if (input.equals("1")) {
         System.out.println("Welcome Soldier. ENTER A NAME:");
 
         player = new Soldier(playerInput.nextLine());
@@ -145,25 +146,23 @@ public class Game{
             }
             System.out.println("Health: "+player.getHP()+" "+player.getSpecialName()+": "+player.getSpecial());
             System.out.println("Attack (0) SuperAttack (1) Heal (2)");
-            boolean asdfajk = false;
-              if (playerInput.nextLine().equals("0")) {
+
+            String inputaaaa = playerInput.nextLine();
+              if (inputaaaa.equals("0")) {
 
                 player.attack(enemy);
                 System.out.println("Enemy HP: "+enemy.getHP());
-                asdfajk = true;
-              } else if (playerInput.nextLine().equals("1")) {
+              } else if (inputaaaa.equals("1")) {
 
                 player.specialAttack(enemy);
                 System.out.println("Enemy HP: "+enemy.getHP());
                 System.out.println("Your "+player.getSpecialName()+ ": " +player.getSpecial());
-                asdfajk = true;
               }
-              else if (playerInput.nextLine().equals("1")) {
+              else if (inputaaaa.equals("1")) {
 
                 player.support(player);
                 System.out.println("Your HP: "+player.getHP());
                 System.out.println("Your "+player.getSpecialName()+ ": " +player.getSpecial());
-                asdfajk = true;
               }
             }
           kills ++;
