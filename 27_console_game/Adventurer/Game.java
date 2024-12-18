@@ -1,8 +1,8 @@
 import java.time.chrono.MinguoChronology;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game{
-
   public static void main(String[] args){
     String[][] map = new String[25][45];
     for (int i = 0; i < map.length; i ++){
@@ -94,14 +94,25 @@ public class Game{
     printMap(map);
 
     Scanner playerInput = new Scanner(System.in);
-    System.out.println("Welcome Wizard. ENTER A NAME:");
-    Sorcerer player = new Sorcerer(playerInput.nextLine());
+    System.out.println("Wizard (0) or Soldier (1)?");
+    Adventurer player = new Minion(1);
+      if (playerInput.nextLine().equals("0")) {
+        System.out.println("Welcome Wizard. ENTER A NAME:");
+        player = new Sorcerer(playerInput.nextLine());
+      } else if (playerInput.nextLine().equals("1")) {
+        System.out.println("Welcome Soldier. ENTER A NAME:");
+
+        player = new Soldier(playerInput.nextLine());
+      }
     int[] coordinates = {1, 1};
     map[1][1] = "@";
     printMap(map);
     
     boolean win = false;
     int kills = 0;
+    boolean dead = false;
+
+    Random rand = new Random();
     while(!win){
       map[23][43] = "W";
       coordinates = move(map, playerInput, coordinates);
@@ -117,17 +128,58 @@ public class Game{
       }
 
       for (int i = 0; i < enemies.length; i ++){
-        int[] bs = {100, 100};
+        int[] abcdefg = {100, 100};
         if (coordinates[0] == enemycoords[i][0] && coordinates[1] == enemycoords[i][1]){
-          enemycoords[i] = bs;
+          enemycoords[i] = abcdefg;
           System.out.println("FIGHT!!");
-          System.out.println("YOU WON!!");
+          Minion enemy = enemies[i];
+          while (enemy.getHP()>0){
+            if (rand.nextDouble() > 0.9){
+              enemy.specialAttack(player);
+            } else {
+              enemy.attack(player);
+            }
+            if (player.getHP()<=0){
+              dead = true;
+              break;
+            }
+            System.out.println("Health: "+player.getHP()+" "+player.getSpecialName()+": "+player.getSpecial());
+            System.out.println("Attack (0) SuperAttack (1) Heal (2)");
+            boolean asdfajk = false;
+              if (playerInput.nextLine().equals("0")) {
+
+                player.attack(enemy);
+                System.out.println("Enemy HP: "+enemy.getHP());
+                asdfajk = true;
+              } else if (playerInput.nextLine().equals("1")) {
+
+                player.specialAttack(enemy);
+                System.out.println("Enemy HP: "+enemy.getHP());
+                System.out.println("Your "+player.getSpecialName()+ ": " +player.getSpecial());
+                asdfajk = true;
+              }
+              else if (playerInput.nextLine().equals("1")) {
+
+                player.support(player);
+                System.out.println("Your HP: "+player.getHP());
+                System.out.println("Your "+player.getSpecialName()+ ": " +player.getSpecial());
+                asdfajk = true;
+              }
+            }
           kills ++;
+          System.out.println("VICTORY!");
+          player.support(player);
+        }
+        if (dead){
+          break;
         }
       }
     }
-
-    System.out.println("YOU WIN");
+    if (!dead ) {
+      System.out.println("YOU WIN");
+    } else {
+      System.out.println("YOU LOST");
+    }
     
   }
 

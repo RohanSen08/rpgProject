@@ -1,29 +1,26 @@
-public class Wizard extends Adventurer{
-  private int mana = 50;
-  private int manaMax = 500;
-  public Wizard(String name){
-      super(name, 10);
+public class Soldier extends Adventurer{
+  private int stamina = 50;
+  private int staminaMax = 500;
+  public Soldier(String name){
+      super(name, 100);
   }
 
-  public Wizard(String name, int hp){
+  public Soldier(String name, int hp){
       super(name, hp);
-  }
-  public Wizard(Sorcerer sorcerer){
-    super(sorcerer.getName(), sorcerer.getHP());
   }
   //give it a short name (fewer than 13 characters)
   public String getSpecialName(){
-    return "Skibidi Staff";
+    return "Stamina";
   }
   //accessor methods
   public int getSpecial(){
-      return mana;
+      return stamina;
   }
   public void setSpecial(int n){
-    mana = n;
+    stamina = n;
   }
   public int getSpecialMax(){
-    return manaMax;
+    return staminaMax;
   }
 
   /*
@@ -37,28 +34,28 @@ public class Wizard extends Adventurer{
 
   //heall or buff the target adventurer
   public void support(Adventurer other){
-    other.setHP(Math.min(super.getHP()+30, other.getmaxHP()));
-    other.setSpecial(Math.min(getSpecial()+30, other.getSpecialMax()));
+    other.setHP(Math.min(super.getHP()+10, other.getmaxHP()));
+    other.setSpecial(Math.min(getSpecial()+10, other.getSpecialMax()));
   }
 
   //heall or buff self
   public void support(){
-    if (mana >= 10){
-      super.setHP(Math.min(super.getHP()+30, super.getmaxHP()));
-      mana -= 10;
+    if (stamina >= 10){
+      super.setHP(Math.min(super.getHP()+10, super.getmaxHP()));
+      stamina -= 10;
     } else {
-      System.out.println("NOT ENOUGH MANA");
+      System.out.println("NOT ENOUGH STAMINA");
     }
   }
 
   //hurt or hinder the target adventurer, consume some special resource
   public void specialAttack(Adventurer other){
-    if (mana > 25){
-      other.applyDamage(75);
+    if (stamina > 25){
+      other.applyDamage(60);
       super.setHP(Math.min(super.getHP()+10, super.getmaxHP()));
-      mana -= 25;
+      stamina -= 25;
     } else {
-      System.out.println("NOT ENOUGH MANA");
+      System.out.println("NOT ENOUGH STAMINA");
     }
   }
 }

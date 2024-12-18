@@ -2,7 +2,7 @@ public class Sorcerer extends Adventurer{
   private int mana = 10;
   private int manaMax = 100;
   public Sorcerer(String name){
-      super(name, 10);
+      super(name, 150);
   }
 
   public Sorcerer(String name, int hp){
@@ -11,7 +11,7 @@ public class Sorcerer extends Adventurer{
 
   //give it a short name (fewer than 13 characters)
   public String getSpecialName(){
-    return "Staff of Doom";
+    return "Mana";
   }
   //accessor methods
   public int getSpecial(){
@@ -35,14 +35,14 @@ public class Sorcerer extends Adventurer{
 
   //heall or buff the target adventurer
   public void support(Adventurer other){
-    other.setHP(Math.min(super.getHP()+15, other.getmaxHP()));
-    other.setSpecial(Math.min(getSpecial()+15, other.getSpecialMax()));
+    other.setHP(Math.min(super.getHP()+30, other.getmaxHP()));
+    other.setSpecial(Math.min(getSpecial()+30, other.getSpecialMax()));
   }
 
   //heall or buff self
   public void support(){
     if (mana >= 10){
-      super.setHP(Math.min(super.getHP()+15, super.getmaxHP()));
+      super.setHP(Math.min(super.getHP()+30, super.getmaxHP()));
       mana -= 10;
     } else {
       System.out.println("NOT ENOUGH MANA");
