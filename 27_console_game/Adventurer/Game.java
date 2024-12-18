@@ -82,7 +82,7 @@ public class Game{
     Minion[] enemies = new Minion[7];
     int[][] enemycoords = new int[7][2];
     for (int i = 0; i < 7; i ++){
-      enemies[i] = new Minion((int)(Math.random() * 10));
+      enemies[i] = new Minion((int)(Math.random() * 100));
       int[] x = {(int)(Math.random() * 20 + 2), (int)(Math.random() * 40 + 2)};
       enemycoords[i] = x;
     }
